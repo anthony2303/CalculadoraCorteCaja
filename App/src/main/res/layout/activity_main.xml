@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/edtEfectivo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Efectivo"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/edtTpv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="TPV"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/edtPropinas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Propinas"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/edtRetiros"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Retiros"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/edtPedidos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Pedidos"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Guardar" />
+
+    <Button
+        android:id="@+id/btnShare"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Compartir por WhatsApp" />
+
+    <Button
+        android:id="@+id/btnHistory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Historial" />
+</LinearLayout>
