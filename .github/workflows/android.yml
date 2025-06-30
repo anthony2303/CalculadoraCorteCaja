@@ -21,16 +21,15 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Install system Gradle
+      - name: Download and install Gradle 8.0.2
         run: |
-          sudo apt-get update
-          sudo apt-get install -y gradle
-
-      - name: Generate Gradle Wrapper v8.0.2
-        run: gradle wrapper --gradle-version 8.0.2
+          wget -q https://services.gradle.org/distributions/gradle-8.0.2-bin.zip
+          unzip -q gradle-8.0.2-bin.zip -d gradle
+          echo "GRADLE_HOME=${{ runner.workspace }}/gradle/gradle-8.0.2" >> $GITHUB_ENV
+          echo "${{ runner.workspace }}/gradle/gradle-8.0.2/bin" >> $GITHUB_PATH
 
       - name: Build Debug APK
-        run: ./gradlew :app:assembleDebug --no-daemon
+        run: gradle :app:assembleDebug --no-daemon
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
