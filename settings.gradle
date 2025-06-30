@@ -1,1 +1,2 @@
-rootProject.name = "CalculadoraCorteCaja" 
+rootProject.name = "CalculadoraCorteCaja"
+include(":app")
