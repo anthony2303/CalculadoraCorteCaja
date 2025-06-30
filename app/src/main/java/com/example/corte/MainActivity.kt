@@ -20,18 +20,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         try {
-            // Inflar layout con ViewBinding
             binding = ActivityMainBinding.inflate(layoutInflater)
             setContentView(binding.root)
 
-            // Configurar botones
             binding.btnSave.setOnClickListener { saveCorte() }
             binding.btnShare.setOnClickListener { shareWhatsapp() }
             binding.btnHistory.setOnClickListener {
                 startActivity(Intent(this, HistoryActivity::class.java))
             }
 
-            // Cargar últimos totales guardados
             loadLastTotals()
         } catch (e: Exception) {
             Toast.makeText(this, "Error al iniciar: ${e.message}", Toast.LENGTH_LONG).show()
@@ -57,8 +54,7 @@ class MainActivity : AppCompatActivity() {
             }
             val entries = db.cutDao().getEntriesInRange(start.timeInMillis, end.timeInMillis)
             if (entries.isNotEmpty()) {
-                val last = entries.first()
-                runOnUiThread { displayTotals(last) }
+                runOnUiThread { displayTotals(entries.first()) }
             }
         }
     }
