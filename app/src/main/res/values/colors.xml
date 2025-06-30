@@ -1,10 +1,13 @@
-<!-- res/values/colors.xml -->
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="restaurantBackground">#FFF8E1</color>      <!-- Crema suave -->
-    <color name="restaurantPrimary">#FFB74D</color>         <!-- Naranja cálido -->
-    <color name="restaurantSecondary">#81C784</color>       <!-- Verde menta -->
-    <color name="restaurantSurface">#FFFFFF</color>         <!-- Blanco para tarjetas -->
-    <color name="restaurantOnPrimary">#FFFFFF</color>       <!-- Texto sobre primary -->
-    <color name="restaurantOnSecondary">#FFFFFF</color>     <!-- Texto sobre secondary -->
-    <color name="restaurantOnSurface">#000000</color>       <!-- Texto sobre blanco -->
+    <color name="primaryLight">#FFEDE2</color>
+    <color name="primary">#FF8A65</color>
+    <color name="primaryDark">#D35400</color>
+    <color name="secondary">#FFF3E0</color>
+    <color name="onPrimary">#FFFFFF</color>
+    <color name="onSecondary">#000000</color>
+    <color name="background">#FFF8F4</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="textPrimary">#212121</color>
+    <color name="textSecondary">#757575</color>
 </resources>
