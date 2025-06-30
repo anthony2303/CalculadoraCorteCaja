@@ -18,43 +18,50 @@ class MainActivity : AppCompatActivity() {
     private val db by lazy { AppDatabase.getDatabase(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        try {
-            binding = ActivityMainBinding.inflate(layoutInflater)
-            setContentView(binding.root)
-
-            binding.btnSave.setOnClickListener { saveCorte() }
-            binding.btnShare.setOnClickListener { shareWhatsapp() }
-            binding.btnHistory.setOnClickListener {
-                startActivity(Intent(this, HistoryActivity::class.java))
+        // Manejo global de excepciones para atrapar crashes de layout, NPEs, etc.
+        Thread.setDefaultUncaughtExceptionHandler { _, e ->
+            runOnUiThread {
+                Toast.makeText(
+                    this,
+                    "Error inesperado al iniciar: ${e.localizedMessage}",
+                    Toast.LENGTH_LONG
+                ).show()
             }
-
-            loadLastTotals()
-        } catch (e: Exception) {
-            Toast.makeText(this, "Error al iniciar: ${e.message}", Toast.LENGTH_LONG).show()
-            Log.e("MainActivity", "Error en onCreate", e)
-            finish()
+            Log.e("AppCrash", "Uncaught exception", e)
         }
+
+        super.onCreate(savedInstanceState)
+        // Inflar layout y binding
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        // Botones
+        binding.btnSave.setOnClickListener { saveCorte() }
+        binding.btnShare.setOnClickListener { shareWhatsapp() }
+        binding.btnHistory.setOnClickListener {
+            startActivity(Intent(this, HistoryActivity::class.java))
+        }
+
+        // Carga últimos valores
+        loadLastTotals()
     }
 
     private fun loadLastTotals() {
         CoroutineScope(Dispatchers.IO).launch {
             val now = Calendar.getInstance()
             val start = Calendar.getInstance().apply {
-                set(Calendar.DAY_OF_MONTH, 1)
-                set(Calendar.HOUR_OF_DAY, 0)
-                set(Calendar.MINUTE, 0)
-                set(Calendar.SECOND, 0)
+                set(Calendar.DAY_OF_MONTH, 1); set(Calendar.HOUR_OF_DAY, 0)
+                set(Calendar.MINUTE, 0); set(Calendar.SECOND, 0)
             }
             val end = Calendar.getInstance().apply {
                 set(Calendar.DAY_OF_MONTH, now.getActualMaximum(Calendar.DAY_OF_MONTH))
-                set(Calendar.HOUR_OF_DAY, 23)
-                set(Calendar.MINUTE, 59)
+                set(Calendar.HOUR_OF_DAY, 23); set(Calendar.MINUTE, 59)
                 set(Calendar.SECOND, 59)
             }
             val entries = db.cutDao().getEntriesInRange(start.timeInMillis, end.timeInMillis)
             if (entries.isNotEmpty()) {
-                runOnUiThread { displayTotals(entries.first()) }
+                val last = entries.first()
+                runOnUiThread { displayTotals(last) }
             }
         }
     }
