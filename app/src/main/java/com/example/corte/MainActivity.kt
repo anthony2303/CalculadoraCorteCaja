@@ -20,22 +20,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         try {
-            // Inflate y vista
             binding = ActivityMainBinding.inflate(layoutInflater)
             setContentView(binding.root)
 
-            // Botones
             binding.btnSave.setOnClickListener { saveCorte() }
             binding.btnShare.setOnClickListener { shareWhatsapp() }
             binding.btnHistory.setOnClickListener {
                 startActivity(Intent(this, HistoryActivity::class.java))
             }
 
-            // Carga últimos totales
             loadLastTotals()
-
         } catch (e: Exception) {
-            // Muestra el error en un Toast y registra en Logcat
             Toast.makeText(this, "Error al iniciar: ${e.message}", Toast.LENGTH_LONG).show()
             Log.e("MainActivity", "Error en onCreate", e)
             finish()
@@ -46,12 +41,15 @@ class MainActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             val now = Calendar.getInstance()
             val start = Calendar.getInstance().apply {
-                set(Calendar.DAY_OF_MONTH, 1); set(Calendar.HOUR_OF_DAY, 0)
-                set(Calendar.MINUTE, 0); set(Calendar.SECOND, 0)
+                set(Calendar.DAY_OF_MONTH, 1)
+                set(Calendar.HOUR_OF_DAY, 0)
+                set(Calendar.MINUTE, 0)
+                set(Calendar.SECOND, 0)
             }
             val end = Calendar.getInstance().apply {
                 set(Calendar.DAY_OF_MONTH, now.getActualMaximum(Calendar.DAY_OF_MONTH))
-                set(Calendar.HOUR_OF_DAY, 23); set(Calendar.MINUTE, 59)
+                set(Calendar.HOUR_OF_DAY, 23)
+                set(Calendar.MINUTE, 59)
                 set(Calendar.SECOND, 59)
             }
             val entries = db.cutDao().getEntriesInRange(start.timeInMillis, end.timeInMillis)
@@ -73,20 +71,31 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun saveCorte() {
-        val efectivo = binding.tvEfectivo.text.substringAfter("$").toDoubleOrNull() ?: 0.0
-        val tpv = binding.tvTpv.text.substringAfter("$").toDoubleOrNull() ?: 0.0
-        val propinas = binding.tvPropinas.text.substringAfter("$").toDoubleOrNull() ?: 0.0
-        val retiros = binding.tvRetiros.text.substringAfter("$").toDoubleOrNull() ?: 0.0
-        val pedidos = binding.tvPagados.text.substringBefore(" pedidos").toIntOrNull() ?: 0
+        val efectivo = binding.tvEfectivo.text.toString()
+            .substringAfter("$")
+            .toDoubleOrNull() ?: 0.0
+        val tpv = binding.tvTpv.text.toString()
+            .substringAfter("$")
+            .toDoubleOrNull() ?: 0.0
+        val propinas = binding.tvPropinas.text.toString()
+            .substringAfter("$")
+            .toDoubleOrNull() ?: 0.0
+        val retiros = binding.tvRetiros.text.toString()
+            .substringAfter("$")
+            .toDoubleOrNull() ?: 0.0
+        val pedidos = binding.tvPagados.text.toString()
+            .substringBefore(" pedidos")
+            .toIntOrNull() ?: 0
 
         val entry = CutEntry(
-            System.currentTimeMillis(),
-            efectivo,
-            tpv,
-            propinas,
-            retiros,
-            pedidos
+            date     = System.currentTimeMillis(),
+            efectivo = efectivo,
+            tpv      = tpv,
+            propinas = propinas,
+            retiros  = retiros,
+            pedidos  = pedidos
         )
+
         CoroutineScope(Dispatchers.IO).launch {
             db.cutDao().insertEntry(entry)
             runOnUiThread { displayTotals(entry) }
