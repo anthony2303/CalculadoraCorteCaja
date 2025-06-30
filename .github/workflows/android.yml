@@ -1,3 +1,5 @@
+# .github/workflows/android.yml
+
 name: Android CI
 
 on:
@@ -13,19 +15,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up JDK 8
+      - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
-          java-version: '8'
+          java-version: '17'
 
       - name: Install system Gradle
         run: |
           sudo apt-get update
           sudo apt-get install -y gradle
 
+      - name: Generate Gradle Wrapper v8.0.2
+        run: gradle wrapper --gradle-version 8.0.2
+
       - name: Build Debug APK
-        run: gradle :app:assembleDebug --no-daemon
+        run: ./gradlew :app:assembleDebug --no-daemon
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
