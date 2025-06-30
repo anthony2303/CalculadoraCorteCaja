@@ -6,12 +6,10 @@
         android:label="Corte Caja"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
-        <!-- No necesita intent-filter, exportada=false por seguridad -->
         <activity
             android:name=".HistoryActivity"
             android:exported="false" />
 
-        <!-- Launcher, exportada=true para que Android la invoque -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
