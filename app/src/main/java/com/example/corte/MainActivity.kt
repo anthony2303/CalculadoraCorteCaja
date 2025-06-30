@@ -3,7 +3,7 @@ package com.example.corte
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.corte.data.AppDatabase
 import com.example.corte.data.CutEntry
@@ -18,44 +18,45 @@ class MainActivity : AppCompatActivity() {
     private val db by lazy { AppDatabase.getDatabase(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        // Manejo global de excepciones para atrapar crashes de layout, NPEs, etc.
-        Thread.setDefaultUncaughtExceptionHandler { _, e ->
-            runOnUiThread {
-                Toast.makeText(
-                    this,
-                    "Error inesperado al iniciar: ${e.localizedMessage}",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-            Log.e("AppCrash", "Uncaught exception", e)
-        }
-
         super.onCreate(savedInstanceState)
-        // Inflar layout y binding
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
-        // Botones
-        binding.btnSave.setOnClickListener { saveCorte() }
-        binding.btnShare.setOnClickListener { shareWhatsapp() }
-        binding.btnHistory.setOnClickListener {
-            startActivity(Intent(this, HistoryActivity::class.java))
+        // Intentamos inflar y arrancar la UI dentro de un try/catch
+        try {
+            binding = ActivityMainBinding.inflate(layoutInflater)
+            setContentView(binding.root)
+
+            // Botones y carga de datos
+            binding.btnSave.setOnClickListener { saveCorte() }
+            binding.btnShare.setOnClickListener { shareWhatsapp() }
+            binding.btnHistory.setOnClickListener {
+                startActivity(Intent(this, HistoryActivity::class.java))
+            }
+            loadLastTotals()
+
+        } catch (e: Exception) {
+            // Muestra un diálogo con el stacktrace completo
+            AlertDialog.Builder(this)
+                .setTitle("Error al iniciar la actividad")
+                .setMessage(e.stackTraceToString())
+                .setPositiveButton("Cerrar") { _, _ -> finish() }
+                .show()
+            Log.e("MainActivity", "Error en onCreate", e)
         }
-
-        // Carga últimos valores
-        loadLastTotals()
     }
 
     private fun loadLastTotals() {
         CoroutineScope(Dispatchers.IO).launch {
             val now = Calendar.getInstance()
             val start = Calendar.getInstance().apply {
-                set(Calendar.DAY_OF_MONTH, 1); set(Calendar.HOUR_OF_DAY, 0)
-                set(Calendar.MINUTE, 0); set(Calendar.SECOND, 0)
+                set(Calendar.DAY_OF_MONTH, 1)
+                set(Calendar.HOUR_OF_DAY, 0)
+                set(Calendar.MINUTE, 0)
+                set(Calendar.SECOND, 0)
             }
             val end = Calendar.getInstance().apply {
                 set(Calendar.DAY_OF_MONTH, now.getActualMaximum(Calendar.DAY_OF_MONTH))
-                set(Calendar.HOUR_OF_DAY, 23); set(Calendar.MINUTE, 59)
+                set(Calendar.HOUR_OF_DAY, 23)
+                set(Calendar.MINUTE, 59)
                 set(Calendar.SECOND, 59)
             }
             val entries = db.cutDao().getEntriesInRange(start.timeInMillis, end.timeInMillis)
