@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.corte'                  // <<–– aquí defines tu paquete
+    namespace 'com.example.corte'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.example.corte"          // <<–– aquí también
+        applicationId "com.example.corte"
         minSdk 21
         targetSdk 34
         versionCode 1
@@ -38,5 +38,4 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    // Añade aquí tus otras dependencias si las tienes
 }
