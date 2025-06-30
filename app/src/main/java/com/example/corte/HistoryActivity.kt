@@ -1,43 +1,54 @@
 package com.example.corte
 
 import android.os.Bundle
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import com.example.corte.data.AppDatabase
+import com.example.corte.databinding.ActivityHistoryBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
 class HistoryActivity : AppCompatActivity() {
-    private lateinit var db: AppDatabase
+    private lateinit var binding: ActivityHistoryBinding
+    private val db by lazy { AppDatabase.getDatabase(this) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_history)
-        db = AppDatabase.getDatabase(this)
-        val tvHistory = findViewById<TextView>(R.id.tvHistory)
-        lifecycleScope.launch {
+        binding = ActivityHistoryBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        // Carga el historial de cortes del mes actual
+        CoroutineScope(Dispatchers.IO).launch {
             val now = Calendar.getInstance()
-            val first = Calendar.getInstance().apply {
+            val start = Calendar.getInstance().apply {
                 set(Calendar.DAY_OF_MONTH, 1)
                 set(Calendar.HOUR_OF_DAY, 0)
                 set(Calendar.MINUTE, 0)
                 set(Calendar.SECOND, 0)
             }
-            val last = Calendar.getInstance().apply {
+            val end = Calendar.getInstance().apply {
                 set(Calendar.DAY_OF_MONTH, now.getActualMaximum(Calendar.DAY_OF_MONTH))
                 set(Calendar.HOUR_OF_DAY, 23)
                 set(Calendar.MINUTE, 59)
                 set(Calendar.SECOND, 59)
             }
-            val entries = db.cutDao().getEntriesInRange(first.timeInMillis, last.timeInMillis)
-            val sb = StringBuilder()
-            entries.forEach {
-                val dateStr = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()).format(Date(it.date))
-                sb.append("$dateStr - Efectivo: ${it.efectivo}, TPV: ${it.tpv}, Propinas: ${it.propinas}, Retiros: ${it.retiros}, Pedidos: ${it.pedidos}\n")
+
+            val entries = db.cutDao().getEntriesInRange(start.timeInMillis, end.timeInMillis)
+            val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+            val text = if (entries.isNotEmpty()) {
+                entries.joinToString("\n") { e ->
+                    "${sdf.format(Date(e.date))} - E:${"%.2f".format(e.efectivo)} " +
+                    "TPV:${"%.2f".format(e.tpv)} P:${"%.2f".format(e.propinas)} " +
+                    "R:${"%.2f".format(e.retiros)} Ped:${e.pedidos}"
+                }
+            } else {
+                "No hay registros este mes."
             }
+
             runOnUiThread {
-                tvHistory.text = if (sb.isNotEmpty()) sb.toString() else "No hay registros este mes."
+                binding.tvHistory.text = text
             }
         }
     }
