@@ -1,60 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:padding="16dp">
 
-    <EditText
-        android:id="@+id/edtEfectivo"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Efectivo"
-        android:inputType="numberDecimal" />
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
 
-    <EditText
-        android:id="@+id/edtTpv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="TPV"
-        android:inputType="numberDecimal" />
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Corte de Caja"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
 
-    <EditText
-        android:id="@+id/edtPropinas"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Propinas"
-        android:inputType="numberDecimal" />
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            android:layout_marginBottom="12dp">
 
-    <EditText
-        android:id="@+id/edtRetiros"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Retiros"
-        android:inputType="numberDecimal" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-    <EditText
-        android:id="@+id/edtPedidos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Pedidos"
-        android:inputType="number" />
+                <TextView
+                    android:id="@+id/tvEfectivo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Efectivo: $0.00"
+                    android:textSize="18sp"/>
 
-    <Button
-        android:id="@+id/btnSave"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Guardar" />
+                <TextView
+                    android:id="@+id/tvTpv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TPV: $0.00"
+                    android:textSize="18sp"/>
 
-    <Button
-        android:id="@+id/btnShare"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Compartir por WhatsApp" />
+                <TextView
+                    android:id="@+id/tvPropinas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Propinas: $0.00"
+                    android:textSize="18sp"/>
 
-    <Button
-        android:id="@+id/btnHistory"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Historial" />
-</LinearLayout>
+                <TextView
+                    android:id="@+id/tvPagados"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pagados: 0 pedidos"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:id="@+id/tvRetiros"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Retiros: $0.00"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:id="@+id/tvDeuda"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Deuda actual: $0.00"
+                    android:textSize="18sp"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:layout_marginTop="8dp"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Guardar Corte"/>
+
+        <Button
+            android:id="@+id/btnShare"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Compartir Whatsapp"
+            android:layout_marginTop="8dp"/>
+
+        <Button
+            android:id="@+id/btnHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Historial"
+            android:layout_marginTop="8dp"/>
+
+    </LinearLayout>
+</ScrollView>
