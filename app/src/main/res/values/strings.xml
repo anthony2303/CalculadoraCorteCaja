@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Nombre que usa @string/app_name en AndroidManifest -->
-    <string name="app_name">MiCorteCaja</string>
+    <string name="app_name">Calculadora Corte Caja</string>
 </resources>
