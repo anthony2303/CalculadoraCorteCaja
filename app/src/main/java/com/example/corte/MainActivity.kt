@@ -10,7 +10,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             CorteCajaTheme {
-                // TODO: añade aquí tu UI para repartidor con estilo “soft restaurante”
+                // TODO: aquí tu UI “soft restaurante” para repartidor
             }
         }
     }
