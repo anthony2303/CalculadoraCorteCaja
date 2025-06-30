@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Asegúrate de que estos colores existan -->
-    <color name="teal_700">#018786</color>
-    <color name="teal_200">#03DAC5</color>
-    <!-- puedes personalizar estos valores a tu gusto -->
+    <!-- Fondo general muy claro -->
+    <color name="bg_app">#FFF3E0</color>
+    <!-- Tarjeta blanca suave -->
+    <color name="card_bg">#FFFFFF</color>
+    <!-- Naranja pastel para acentos (botones, encabezados) -->
+    <color name="colorPrimary">#FFB74D</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <!-- Amarillo suave para secundario -->
+    <color name="colorSecondary">#FFCC80</color>
+    <color name="colorOnSecondary">#3E2723</color>
+    <!-- Texto oscuro suave -->
+    <color name="text_primary">#3E2723</color>
+    <color name="text_secondary">#6D4C41</color>
 </resources>
