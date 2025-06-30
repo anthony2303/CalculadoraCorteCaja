@@ -1,32 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-
-    <!-- Base application theme. -->
     <style name="Theme.CorteCaja" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Colores principales -->
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryVariant">@color/primaryDark</item>
-        <item name="colorOnPrimary">@color/onPrimary</item>
-        <item name="colorSecondary">@color/secondary</item>
-        <item name="colorOnSecondary">@color/onSecondary</item>
-
-        <!-- Fondo global -->
-        <item name="android:windowBackground">@color/background</item>
-
-        <!-- Tipografía -->
-        <item name="android:textColorPrimary">@color/textPrimary</item>
-        <item name="android:textColorSecondary">@color/textSecondary</item>
-
-        <!-- CardView por defecto: bordes redondeados y elevación suave -->
-        <item name="materialCardViewStyle">@style/Widget.CorteCaja.CardView</item>
+        <!-- personaliza colores aquí -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorSecondary">@color/teal_200</item>
     </style>
-
-    <!-- Estilo para tarjetas -->
-    <style name="Widget.CorteCaja.CardView" parent="Widget.MaterialComponents.CardView">
-        <item name="cardCornerRadius">16dp</item>
-        <item name="cardElevation">4dp</item>
-        <item name="cardUseCompatPadding">true</item>
-        <item name="cardBackgroundColor">@color/surface</item>
-    </style>
-
 </resources>
