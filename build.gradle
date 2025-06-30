@@ -10,9 +10,5 @@ buildscript {
     }
 }
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
+// ¡El bloque `allprojects { repositories {…} }` ha sido eliminado para respetar
+// la configuración de repositorios definida en settings.gradle!
