@@ -31,10 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp"
-                android:divider="?attr/dividerVertical"
-                android:showDividers="middle"
-                android:dividerPadding="8dp">
+                android:padding="16dp">
 
                 <TextView
                     android:id="@+id/tvEfectivo"
@@ -48,32 +45,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="TPV: $0.00"
-                    android:textSize="18sp"
-                    android:layout_marginTop="8dp"/>
+                    android:textSize="18sp"/>
 
                 <TextView
                     android:id="@+id/tvPropinas"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Propinas: $0.00"
-                    android:textSize="18sp"
-                    android:layout_marginTop="8dp"/>
+                    android:textSize="18sp"/>
 
                 <TextView
                     android:id="@+id/tvPagados"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Pagados: 0 pedidos"
-                    android:textSize="18sp"
-                    android:layout_marginTop="8dp"/>
+                    android:textSize="18sp"/>
 
                 <TextView
                     android:id="@+id/tvRetiros"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Retiros: $0.00"
-                    android:textSize="18sp"
-                    android:layout_marginTop="8dp"/>
+                    android:textSize="18sp"/>
 
                 <TextView
                     android:id="@+id/tvDeuda"
@@ -82,7 +75,7 @@
                     android:text="Deuda actual: $0.00"
                     android:textSize="18sp"
                     android:textColor="@android:color/holo_red_dark"
-                    android:layout_marginTop="12dp"/>
+                    android:layout_marginTop="8dp"/>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -90,8 +83,7 @@
             android:id="@+id/btnSave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Guardar Corte"
-            android:layout_marginTop="16dp"/>
+            android:text="Guardar Corte"/>
 
         <Button
             android:id="@+id/btnShare"
