@@ -1,19 +1,27 @@
+// app/build.gradle
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'kotlin-kapt'
 }
 
 android {
-    namespace 'com.example.corte'
+    namespace 'com.example.corte'                  // <<–– aquí defines tu paquete
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.example.corte"
+        applicationId "com.example.corte"          // <<–– aquí también
         minSdk 21
         targetSdk 34
         versionCode 1
         versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            isMinifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
+                          'proguard-rules.pro'
+        }
     }
 
     compileOptions {
@@ -21,25 +29,14 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "17"
-    }
-    buildFeatures {
-        viewBinding true
+        jvmTarget = '17'
     }
 }
 
 dependencies {
-    implementation "androidx.core:core-ktx:1.9.0"
-    implementation "androidx.appcompat:appcompat:1.6.1"
-    implementation "com.google.android.material:material:1.8.0"
-    implementation "androidx.constraintlayout:constraintlayout:2.1.4"
-
-    // Room con Coroutines
-    implementation "androidx.room:room-runtime:2.5.1"
-    implementation "androidx.room:room-ktx:2.5.1"
-    kapt           "androidx.room:room-compiler:2.5.1"
-
-    // Lifecycle
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.6.1"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
+    implementation 'androidx.core:core-ktx:1.10.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    // Añade aquí tus otras dependencias si las tienes
 }
