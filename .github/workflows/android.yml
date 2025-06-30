@@ -1,38 +1,42 @@
-# .github/workflows/android.yml
-
 name: Android CI
 
 on:
   push:
-    branches: [ main ]
-  workflow_dispatch:
+  pull_request:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
+      # 1) Clonar tu repo
+      - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Set up JDK 17
+      # 2) Configurar Java 17
+      - name: Setup Java
         uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Install system Gradle (v4.x)
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y gradle
+      # 3) (Opcional) Cache de dependencias de Gradle para acelerar builds
+      - name: Cache Gradle
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
 
-      - name: Generate Gradle Wrapper (v8.0.2)
+      # 4) Generar el wrapper con Gradle 8.0.2
+      - name: Generar Gradle Wrapper
         run: gradle wrapper --gradle-version 8.0.2
 
-      - name: Build Debug APK via Wrapper
-        run: ./gradlew assembleDebug --no-daemon
+      # 5) Asegurar permisos de ejecución
+      - name: Dar permiso a gradlew
+        run: chmod +x gradlew
 
-      - name: Upload APK artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: app-debug.apk
-          path: app/build/outputs/apk/debug/app-debug.apk
+      # 6) Compilar usando el wrapper recién creado
+      - name: Compilar APK (assembleDebug)
+        run: ./gradlew assembleDebug --no-daemon
