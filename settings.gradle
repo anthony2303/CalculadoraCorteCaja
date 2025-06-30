@@ -1,3 +1,5 @@
+// settings.gradle
+
 pluginManagement {
     repositories {
         gradlePluginPortal()
@@ -7,7 +9,7 @@ pluginManagement {
 }
 
 dependencyResolutionManagement {
-    // Impide que módulos individuales tengan repositorios propios
+    // Impide que cada módulo declare sus propios repositorios
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
