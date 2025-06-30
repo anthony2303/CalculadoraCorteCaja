@@ -16,7 +16,6 @@ android {
         versionName "1.0"
     }
 
-    // === Aseguramos que tanto Java como Kotlin usen el mismo target JVM ===
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
@@ -35,6 +34,7 @@ dependencies {
 
     // Room
     implementation "androidx.room:room-runtime:2.5.1"
+    implementation "androidx.room:room-ktx:2.5.1"       // <-- aquí
     kapt           "androidx.room:room-compiler:2.5.1"
 
     // Architecture components
