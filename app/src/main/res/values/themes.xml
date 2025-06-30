@@ -1,0 +1,18 @@
+<!-- res/values/themes.xml -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <style name="Theme.CorteCaja" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <!-- Colores principales -->
+    <item name="colorPrimary">@color/restaurantPrimary</item>
+    <item name="colorPrimaryVariant">@color/restaurantSecondary</item>
+    <item name="colorSecondary">@color/restaurantSecondary</item>
+
+    <!-- Fondo de ventana -->
+    <item name="android:windowBackground">@color/restaurantBackground</item>
+
+    <!-- Barra de estado -->
+    <item name="android:statusBarColor">@color/restaurantPrimary</item>
+
+    <!-- Tipografía por defecto -->
+    <item name="android:fontFamily">@font/roboto</item>
+  </style>
+</resources>
