@@ -1,17 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Tu tema principal (asegúrate de tener también themes.xml o combinarlo aquí) -->
-    <style name="Theme.CorteCaja" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
-        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
-        <item name="android:windowBackground">@color/background</item>
-    </style>
+<resources>
+    <!-- Título de la app -->
+    <string name="app_name">CorteCaja</string>
 
-    <!-- Estilo para tu CardView personalizado -->
-    <style name="Widget.CorteCaja.CardView" parent="Widget.MaterialComponents.CardView">
-        <item name="cardCornerRadius">16dp</item>
-        <item name="cardElevation">4dp</item>
-        <item name="cardUseCompatPadding">true</item>
-    </style>
+    <!-- Tus otros strings aquí -->
+    <!-- <string name="hello_world">¡Hola mundo!</string> -->
 </resources>
