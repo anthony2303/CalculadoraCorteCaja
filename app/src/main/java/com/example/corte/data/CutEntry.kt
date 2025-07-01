@@ -1,15 +1,14 @@
 package com.example.corte.data
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
 
-@Entity(tableName = "cut_entries")
-data class CutEntry(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
-    val date: Long,
-    val efectivo: Double,
-    val tpv: Double,
-    val propinas: Double,
-    val retiros: Double,
-    val pedidos: Int
-)
+@Dao
+interface CutDao {
+    @Insert
+    suspend fun insert(entry: CutEntry): Long
+
+    @Query("SELECT * FROM cut_entries")
+    suspend fun getAll(): List<CutEntry>
+}
