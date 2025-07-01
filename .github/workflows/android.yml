@@ -2,41 +2,30 @@ name: Android CI
 
 on:
   push:
-  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      # 1) Clonar tu repo
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      # 2) Configurar Java 17
       - name: Setup Java
         uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
           java-version: '17'
 
-      # 3) (Opcional) Cache de dependencias de Gradle para acelerar builds
-      - name: Cache Gradle
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-
-      # 4) Generar el wrapper con Gradle 8.0.2
-      - name: Generar Gradle Wrapper
-        run: gradle wrapper --gradle-version 8.0.2
-
-      # 5) Asegurar permisos de ejecución
-      - name: Dar permiso a gradlew
+      - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      # 6) Compilar usando el wrapper recién creado
-      - name: Compilar APK (assembleDebug)
+      - name: Build Debug APK
         run: ./gradlew assembleDebug --no-daemon
+
+      - name: Upload APK to Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-debug.apk
+          path: app/build/outputs/apk/debug/app-debug.apk
