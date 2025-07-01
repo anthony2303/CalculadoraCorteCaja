@@ -7,6 +7,9 @@
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryVariant">@color/primaryDark</item>
         <item name="colorOnPrimary">@color/onPrimary</item>
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorOnBackground">@color/textPrimary</item>
+        <item name="android:textColor">@color/textPrimary</item>
         <!-- Fondo general -->
         <item name="android:windowBackground">@color/background</item>
         <!-- StatusBar y NavigationBar -->
