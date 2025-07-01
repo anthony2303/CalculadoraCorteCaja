@@ -1,11 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Nombre de la app -->
-    <string name="app_name">CorteCaja</string>
-
-    <!-- Textos de UI -->
-    <string name="hint_input">Introduce un valor</string>
-    <string name="action_calculate">Calcular</string>
-    <string name="result_label">Resultado:</string>
-    <!-- Añade aquí más <string> según necesites -->
+    <string name="app_name">Calculadora Corte</string>
+    <string name="cant_hint">Cantidad</string>
+    <string name="save_button">Guardar corte</string>
+    <string name="history_button">Ver historial</string>
+    <string name="no_entries">No hay cortes registrados</string>
 </resources>
