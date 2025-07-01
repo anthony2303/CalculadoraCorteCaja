@@ -30,8 +30,8 @@ class MainActivity : AppCompatActivity() {
                     OrderEntry(amount = amount, paymentType = paymentType, tip = tip, timestamp = now)
                 )
             }
-            binding.etAmount.text.clear()
-            binding.etTip.text.clear()
+            binding.etAmount.text?.clear()
+            binding.etTip.text?.clear()
         }
 
         binding.btnWithdraw.setOnClickListener {
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
             CoroutineScope(Dispatchers.IO).launch {
                 db.withdrawalDao().insert(WithdrawalEntry(amount = amount, timestamp = now))
             }
-            binding.etWithdrawal.text.clear()
+            binding.etWithdrawal.text?.clear()
         }
 
         binding.btnHistory.setOnClickListener {
