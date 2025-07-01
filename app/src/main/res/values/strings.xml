@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Nombre y metadatos de la app -->
-    <string name="app_name">CorteCajaRepartidor</string>
-    <string name="launcher_name">CorteCaja</string>
+    <string name="app_name">RepartidorCaja</string>
+    <string name="launcher_name">RepartidorCaja</string>
 
     <!-- Etiquetas de botones y campos -->
-    <string name="hint_monto">Ingresa el monto</string>
-    <string name="button_calcular">Calcular</string>
-    <string name="button_limpiar">Limpiar</string>
-    <string name="button_historial">Ver Historial</string>
+    <string name="hint_monto">Monto de la entrega</string>
+    <string name="button_guardar">Registrar entrega</string>
+    <string name="button_historial">Ver entregas</string>
 
     <!-- Títulos de pantallas -->
-    <string name="title_main">Calculadora de Corte</string>
-    <string name="title_history">Historial de Cortes</string>
+    <string name="title_main">Registro de Entregas</string>
+    <string name="title_history">Historial de Entregas</string>
 
     <!-- Columnas del historial -->
     <string name="column_fecha">Fecha</string>
     <string name="column_monto">Monto</string>
 
     <!-- Mensajes de estado -->
-    <string name="msg_no_data">No hay entradas aún</string>
+    <string name="msg_no_data">No hay entregas registradas</string>
     <string name="msg_error">Ocurrió un error, inténtalo de nuevo</string>
     <string name="msg_calculando">Calculando…</string>
 

@@ -5,20 +5,20 @@
 
     <EditText
         android:id="@+id/etAmount"
-        android:hint="Cantidad"
+        android:hint="@string/hint_monto"
         android:inputType="numberDecimal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <Button
         android:id="@+id/btnSave"
-        android:text="Guardar corte"
+        android:text="@string/button_guardar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <Button
         android:id="@+id/btnHistory"
-        android:text="Ver historial"
+        android:text="@string/button_historial"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

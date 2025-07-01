@@ -5,7 +5,7 @@ import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import com.example.corte.databinding.ActivityHistoryBinding
 import com.example.corte.data.AppDatabase
-import com.example.corte.data.CutEntry
+import com.example.corte.data.DeliveryEntry
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,7 +25,7 @@ class HistoryActivity : AppCompatActivity() {
     val oneDayAgo = now - 24 * 60 * 60 * 1000
 
     CoroutineScope(Dispatchers.IO).launch {
-      val entries: List<CutEntry> = db.cutDao().getEntriesInRange(oneDayAgo, now)
+      val entries: List<DeliveryEntry> = db.deliveryDao().getEntriesInRange(oneDayAgo, now)
       val displayList: List<String> = entries.map { "${it.amount} @ ${java.text.DateFormat.getDateTimeInstance().format(it.timestamp)}" }
       withContext(Dispatchers.Main) {
         if (displayList.isEmpty()) {

@@ -5,9 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [CutEntry::class], version = 1, exportSchema = false)
+@Database(entities = [DeliveryEntry::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
-  abstract fun cutDao(): CutDao
+  abstract fun deliveryDao(): DeliveryDao
 
   companion object {
     @Volatile private var INSTANCE: AppDatabase? = null
@@ -15,7 +15,7 @@ abstract class AppDatabase : RoomDatabase() {
     fun getInstance(context: Context): AppDatabase =
       INSTANCE ?: synchronized(this) {
         INSTANCE ?: Room
-          .databaseBuilder(context, AppDatabase::class.java, "corte-db")
+          .databaseBuilder(context, AppDatabase::class.java, "delivery-db")
           .build()
           .also { INSTANCE = it }
       }
