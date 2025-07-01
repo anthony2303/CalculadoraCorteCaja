@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Tema principal de la app -->
     <style name="Theme.CorteCaja" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- aquí pones tus colores “soft restaurante” -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+        <item name="android:windowBackground">@color/background</item>
     </style>
+
+    <!-- Si lo necesitas, otros estilos personalizados -->
+    <style name="Widget.CorteCaja.CardView" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">4dp</item>
+        <item name="cardUseCompatPadding">true</item>
+    </style>
+
 </resources>
