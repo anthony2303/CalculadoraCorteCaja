@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Nombre de la aplicación -->
-    <string name="app_name">TuAppRepartidor</string>
+    <!-- Nombre y metadatos de la app -->
+    <string name="app_name">CorteCajaRepartidor</string>
+    <string name="launcher_name">CorteCaja</string>
 
-    <!-- Pantalla principal -->
-    <string name="title_main">Inicio</string>
-    <string name="hint_amount">Ingresa el monto</string>
-    <string name="button_calculate">Calcular</string>
-    <string name="button_clear">Borrar</string>
+    <!-- Etiquetas de botones y campos -->
+    <string name="hint_monto">Ingresa el monto</string>
+    <string name="button_calcular">Calcular</string>
+    <string name="button_limpiar">Limpiar</string>
+    <string name="button_historial">Ver Historial</string>
 
-    <!-- Historial -->
-    <string name="title_history">Historial de Pedidos</string>
-    <string name="label_date">Fecha</string>
-    <string name="label_amount">Monto</string>
+    <!-- Títulos de pantallas -->
+    <string name="title_main">Calculadora de Corte</string>
+    <string name="title_history">Historial de Cortes</string>
 
-    <!-- Mensajes -->
-    <string name="msg_no_data">No hay datos para mostrar</string>
+    <!-- Columnas del historial -->
+    <string name="column_fecha">Fecha</string>
+    <string name="column_monto">Monto</string>
+
+    <!-- Mensajes de estado -->
+    <string name="msg_no_data">No hay entradas aún</string>
     <string name="msg_error">Ocurrió un error, inténtalo de nuevo</string>
+    <string name="msg_calculando">Calculando…</string>
+
+    <!-- Permisos y otros textos -->
+    <string name="permission_storage">Necesitamos acceso al almacenamiento para guardar el historial</string>
 </resources>
