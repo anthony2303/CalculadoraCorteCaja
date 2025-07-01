@@ -1,40 +1,43 @@
+// File: app/build.gradle
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
 }
 
 android {
-    namespace 'com.example.corte'
+    namespace 'com.example.corte'              // Ajusta al package real
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.corte"
+        applicationId "com.example.corte"      // Ajusta al package real
         minSdk 21
         targetSdk 33
         versionCode 1
         versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildTypes {
-        debug { }
+    compileOptions {
+        // Usamos Java 1.8 para que coincida con el jvmTarget de Kotlin
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 
-        release {
-            // CORRECTO: usa minifyEnabled (no isMinifyEnabled)
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
-                          'proguard-rules.pro'
-        }
+    kotlinOptions {
+        // Esto hace que Kotlin compile para la JVM 1.8
+        jvmTarget = "1.8"
+    }
+
+    buildFeatures {
+        viewBinding true   // si usas ViewBinding
+        // dataBinding true // o DataBinding si lo necesitas
     }
 }
 
 dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.8.0"
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    // añade aquí el resto de tus dependencias...
 }
