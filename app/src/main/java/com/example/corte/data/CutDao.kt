@@ -1,10 +1,14 @@
 package com.example.corte.data
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
 
-@Entity(tableName = "cut_entries")
-data class CutEntry(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
-    val someField: String
-)
+@Dao
+interface CutDao {
+  @Insert
+  suspend fun insert(entry: CutEntry)
+
+  @Query("SELECT * FROM cuts WHERE timestamp BETWEEN :from AND :to ORDER BY timestamp DESC")
+  suspend fun getEntriesInRange(from: Long, to: Long): List<CutEntry>
+}
