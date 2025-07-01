@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:android="http://schemas.android.com/apk/res/android">
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Tema principal de la app -->
+    <!-- Tema de la aplicación -->
     <style name="Theme.CorteCaja" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
-        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+        <!-- Colores principales -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primaryDark</item>
+        <item name="colorOnPrimary">@color/onPrimary</item>
+        <!-- Fondo general -->
         <item name="android:windowBackground">@color/background</item>
-    </style>
-
-    <!-- Si lo necesitas, otros estilos personalizados -->
-    <style name="Widget.CorteCaja.CardView" parent="Widget.MaterialComponents.CardView">
-        <item name="cardCornerRadius">16dp</item>
-        <item name="cardElevation">4dp</item>
-        <item name="cardUseCompatPadding">true</item>
+        <!-- StatusBar y NavigationBar -->
+        <item name="android:statusBarColor">@color/primaryDark</item>
+        <item name="android:navigationBarColor">@color/primary</item>
     </style>
 
 </resources>
