@@ -5,19 +5,25 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [DeliveryEntry::class], version = 1, exportSchema = false)
+@Database(
+    entities = [OrderEntry::class, WithdrawalEntry::class],
+    version = 2,
+    exportSchema = false
+)
 abstract class AppDatabase : RoomDatabase() {
-  abstract fun deliveryDao(): DeliveryDao
+    abstract fun orderDao(): OrderDao
+    abstract fun withdrawalDao(): WithdrawalDao
 
-  companion object {
-    @Volatile private var INSTANCE: AppDatabase? = null
+    companion object {
+        @Volatile private var INSTANCE: AppDatabase? = null
 
-    fun getInstance(context: Context): AppDatabase =
-      INSTANCE ?: synchronized(this) {
-        INSTANCE ?: Room
-          .databaseBuilder(context, AppDatabase::class.java, "delivery-db")
-          .build()
-          .also { INSTANCE = it }
-      }
-  }
+        fun getInstance(context: Context): AppDatabase =
+            INSTANCE ?: synchronized(this) {
+                INSTANCE ?: Room
+                    .databaseBuilder(context, AppDatabase::class.java, "delivery-db")
+                    .fallbackToDestructiveMigration()
+                    .build()
+                    .also { INSTANCE = it }
+            }
+    }
 }
