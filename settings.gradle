@@ -1,2 +1,4 @@
+// File: settings.gradle
+
 rootProject.name = "CalculadoraCorteCaja"
 include(":app")
