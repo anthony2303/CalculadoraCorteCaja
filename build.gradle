@@ -1,17 +1,53 @@
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
+// File: app/build.gradle
+
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'                         // <<< importante para Room
+}
+
+android {
+    namespace 'com.example.corte'            // ajusta a tu package real
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.example.corte"    // ajusta a tu package real
+        minSdk 21
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
     }
-    dependencies {
-        classpath "com.android.tools.build:gradle:8.0.2"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0"
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    buildFeatures {
+        viewBinding true
     }
 }
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
+dependencies {
+    // Kotlin + AndroidX estándar
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.8.0"
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    // **** ROOM ****
+    def room_version = "2.5.1"
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt       "androidx.room:room-compiler:$room_version"
+
+    // Opcional para pruebas
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
