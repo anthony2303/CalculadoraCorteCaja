@@ -6,14 +6,14 @@
     <string name="hint_monto">Monto del pedido</string>
     <string name="hint_tip">Propina en tarjeta</string>
     <string name="hint_withdrawal">Retiro en efectivo</string>
-    <string name="button_guardar">Registrar pedido</string>
-    <string name="button_historial">Corte de caja</string>
-    <string name="button_withdraw">Registrar retiro</string>
+    <string name="button_guardar">Registrar pedido ✅</string>
+    <string name="button_historial">Corte de caja 📊</string>
+    <string name="button_withdraw">Registrar retiro 💸</string>
     <string name="label_cash">Efectivo</string>
     <string name="label_card">Tarjeta</string>
 
-    <string name="title_main">Registro de Pedidos</string>
-    <string name="title_history">Corte de Caja</string>
+    <string name="title_main">Registro de Pedidos 📦</string>
+    <string name="title_history">Corte de Caja 💵</string>
 
     <string name="format_orders">Pedidos: %1$d</string>
     <string name="format_cash">Efectivo: %1$.2f</string>
