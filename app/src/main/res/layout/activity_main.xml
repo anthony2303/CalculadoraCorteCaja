@@ -1,48 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/background"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:padding="16dp"
+    android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_summary"
-        style="@style/Widget.CorteCaja.CardView"
-        app:cardPreventCornerOverlap="false"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+    <EditText
+        android:id="@+id/etAmount"
+        android:hint="Cantidad"
+        android:inputType="numberDecimal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:padding="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <Button
+        android:id="@+id/btnSave"
+        android:text="Guardar corte"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
-            <TextView
-                android:id="@+id/tvTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Resumen de Corte"
-                android:textAppearance="?attr/textAppearanceHeadline6"
-                android:textColor="@color/textPrimary"/>
+    <Button
+        android:id="@+id/btnHistory"
+        android:text="Ver historial"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
-            <TextView
-                android:id="@+id/tvTotal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="$0.00"
-                android:layout_marginTop="8dp"
-                android:textAppearance="?attr/textAppearanceHeadline4"
-                android:textColor="@color/primaryDark"/>
-
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <!-- Más elementos aquí... -->
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
