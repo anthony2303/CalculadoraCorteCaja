@@ -1,55 +1,40 @@
 package com.example.corte
 
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
-import com.example.corte.data.AppDatabase
 import com.example.corte.databinding.ActivityHistoryBinding
+import com.example.corte.data.AppDatabase
+import com.example.corte.data.CutEntry
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.util.*
+import kotlinx.coroutines.withContext
 
 class HistoryActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityHistoryBinding
-    private val db by lazy { AppDatabase.getDatabase(this) }
+  private lateinit var binding: ActivityHistoryBinding
+  private val db by lazy { AppDatabase.getInstance(this) }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityHistoryBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    binding = ActivityHistoryBinding.inflate(layoutInflater)
+    setContentView(binding.root)
 
-        // Carga el historial de cortes del mes actual
-        CoroutineScope(Dispatchers.IO).launch {
-            val now = Calendar.getInstance()
-            val start = Calendar.getInstance().apply {
-                set(Calendar.DAY_OF_MONTH, 1)
-                set(Calendar.HOUR_OF_DAY, 0)
-                set(Calendar.MINUTE, 0)
-                set(Calendar.SECOND, 0)
-            }
-            val end = Calendar.getInstance().apply {
-                set(Calendar.DAY_OF_MONTH, now.getActualMaximum(Calendar.DAY_OF_MONTH))
-                set(Calendar.HOUR_OF_DAY, 23)
-                set(Calendar.MINUTE, 59)
-                set(Calendar.SECOND, 59)
-            }
+    // Por defecto, muestro últimas 24h:
+    val now = System.currentTimeMillis()
+    val oneDayAgo = now - 24 * 60 * 60 * 1000
 
-            val entries = db.cutDao().getEntriesInRange(start.timeInMillis, end.timeInMillis)
-            val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
-            val text = if (entries.isNotEmpty()) {
-                entries.joinToString("\n") { e ->
-                    "${sdf.format(Date(e.date))} - E:${"%.2f".format(e.efectivo)} " +
-                    "TPV:${"%.2f".format(e.tpv)} P:${"%.2f".format(e.propinas)} " +
-                    "R:${"%.2f".format(e.retiros)} Ped:${e.pedidos}"
-                }
-            } else {
-                "No hay registros este mes."
-            }
-
-            runOnUiThread {
-                binding.tvHistory.text = text
-            }
+    CoroutineScope(Dispatchers.IO).launch {
+      val entries: List<CutEntry> = db.cutDao().getEntriesInRange(oneDayAgo, now)
+      val displayList: List<String> = entries.map { "${it.amount} @ ${java.text.DateFormat.getDateTimeInstance().format(it.timestamp)}" }
+      withContext(Dispatchers.Main) {
+        if (displayList.isEmpty()) {
+          binding.tvEmpty.visibility = android.view.View.VISIBLE
+        } else {
+          binding.tvEmpty.visibility = android.view.View.GONE
+          binding.listView.adapter = ArrayAdapter(this@HistoryActivity, android.R.layout.simple_list_item_1, displayList)
         }
+      }
     }
+  }
 }
