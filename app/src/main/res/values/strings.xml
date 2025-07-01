@@ -1,4 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Nombre de la app -->
     <string name="app_name">CorteCaja</string>
-    <string name="hello_world">¡Hola, mundo!</string>
+
+    <!-- Textos de UI -->
+    <string name="hint_input">Introduce un valor</string>
+    <string name="action_calculate">Calcular</string>
+    <string name="result_label">Resultado:</string>
+    <!-- Añade aquí más <string> según necesites -->
 </resources>
