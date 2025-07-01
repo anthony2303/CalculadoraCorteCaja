@@ -1,15 +1,17 @@
 // File: app/build.gradle
+
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
-    namespace 'com.example.corte'              // Ajusta al package real
+    namespace 'com.example.corte'    // ajústalo a tu paquete real
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.corte"      // Ajusta al package real
+        applicationId "com.example.corte"  // ajústalo a tu paquete real
         minSdk 21
         targetSdk 33
         versionCode 1
@@ -17,19 +19,16 @@ android {
     }
 
     compileOptions {
-        // Usamos Java 1.8 para que coincida con el jvmTarget de Kotlin
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
     kotlinOptions {
-        // Esto hace que Kotlin compile para la JVM 1.8
         jvmTarget = "1.8"
     }
 
     buildFeatures {
-        viewBinding true   // si usas ViewBinding
-        // dataBinding true // o DataBinding si lo necesitas
+        viewBinding true
     }
 }
 
@@ -39,5 +38,15 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    // añade aquí el resto de tus dependencias...
+
+    // ROOM
+    def room_version = "2.5.1"
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt       "androidx.room:room-compiler:$room_version"
+
+    // Testing (opcionales)
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
