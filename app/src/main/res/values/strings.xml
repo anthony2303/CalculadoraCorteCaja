@@ -1,7 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Calculadora Corte</string>
-    <string name="cant_hint">Cantidad</string>
-    <string name="save_button">Guardar corte</string>
-    <string name="history_button">Ver historial</string>
-    <string name="no_entries">No hay cortes registrados</string>
+    <!-- Nombre de la aplicación -->
+    <string name="app_name">TuAppRepartidor</string>
+
+    <!-- Pantalla principal -->
+    <string name="title_main">Inicio</string>
+    <string name="hint_amount">Ingresa el monto</string>
+    <string name="button_calculate">Calcular</string>
+    <string name="button_clear">Borrar</string>
+
+    <!-- Historial -->
+    <string name="title_history">Historial de Pedidos</string>
+    <string name="label_date">Fecha</string>
+    <string name="label_amount">Monto</string>
+
+    <!-- Mensajes -->
+    <string name="msg_no_data">No hay datos para mostrar</string>
+    <string name="msg_error">Ocurrió un error, inténtalo de nuevo</string>
 </resources>
