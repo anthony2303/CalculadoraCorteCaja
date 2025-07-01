@@ -5,6 +5,12 @@
     android:padding="16dp">
 
     <TextView
+        android:id="@+id/tvDebt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold" />
+
+    <TextView
         android:id="@+id/tvHistory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

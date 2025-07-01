@@ -57,6 +57,12 @@
             android:layout_height="wrap_content" />
 
         <Button
+            android:id="@+id/btnClear"
+            android:text="@string/button_limpiar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
             android:id="@+id/btnShare"
             android:text="@string/button_compartir"
             android:layout_width="match_parent"

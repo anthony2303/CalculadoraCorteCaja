@@ -4,12 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import java.util.Calendar
 import com.example.corte.databinding.ActivityMainBinding
 import com.example.corte.data.AppDatabase
 import com.example.corte.data.DeliveryEntry
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -21,10 +23,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnSave.setOnClickListener { saveEntry() }
+        binding.btnClear.setOnClickListener { clearFields() }
         binding.btnShare.setOnClickListener { shareWhatsapp() }
         binding.btnHistory.setOnClickListener {
             startActivity(Intent(this, HistoryActivity::class.java))
         }
+        loadDebt()
     }
 
     private fun saveEntry() {
@@ -44,15 +48,24 @@ class MainActivity : AppCompatActivity() {
         )
         CoroutineScope(Dispatchers.IO).launch {
             db.deliveryDao().insert(entry)
+            loadDebtFromDb()
         }
         Toast.makeText(this, getString(R.string.msg_guardado), Toast.LENGTH_SHORT).show()
         clearFields()
-        updateDebt(efectivo, retiros)
     }
 
-    private fun updateDebt(efectivo: Double, retiros: Double) {
-        val deuda = efectivo - retiros
-        binding.tvDeuda.text = getString(R.string.label_deuda_actual, deuda)
+    private fun loadDebt() {
+        CoroutineScope(Dispatchers.IO).launch {
+            loadDebtFromDb()
+        }
+    }
+
+    private suspend fun loadDebtFromDb() {
+        val (first, last) = currentMonthRange()
+        val deuda = db.deliveryDao().getDebtInRange(first, last)
+        withContext(Dispatchers.Main) {
+            binding.tvDeuda.text = getString(R.string.label_deuda_actual, deuda)
+        }
     }
 
     private fun clearFields() {
@@ -61,7 +74,6 @@ class MainActivity : AppCompatActivity() {
         binding.edtPropinas.text.clear()
         binding.edtRetiros.text.clear()
         binding.edtPedidos.text.clear()
-        binding.tvDeuda.text = getString(R.string.label_deuda_actual_default)
     }
 
     private fun shareWhatsapp() {
@@ -91,5 +103,22 @@ class MainActivity : AppCompatActivity() {
         } else {
             Toast.makeText(this, R.string.msg_no_whatsapp, Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun currentMonthRange(): Pair<Long, Long> {
+        val now = Calendar.getInstance()
+        val first = Calendar.getInstance().apply {
+            set(Calendar.DAY_OF_MONTH, 1)
+            set(Calendar.HOUR_OF_DAY, 0)
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
+        }
+        val last = Calendar.getInstance().apply {
+            set(Calendar.DAY_OF_MONTH, now.getActualMaximum(Calendar.DAY_OF_MONTH))
+            set(Calendar.HOUR_OF_DAY, 23)
+            set(Calendar.MINUTE, 59)
+            set(Calendar.SECOND, 59)
+        }
+        return first.timeInMillis to last.timeInMillis
     }
 }

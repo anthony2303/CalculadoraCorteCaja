@@ -15,6 +15,7 @@
     <string name="button_guardar">Guardar registro</string>
     <string name="button_compartir">Compartir WhatsApp</string>
     <string name="button_historial">Ver historial</string>
+    <string name="button_limpiar">Limpiar campos</string>
 
     <!-- Otros textos -->
     <string name="label_deuda_actual">Deuda actual: $%1$.2f</string>

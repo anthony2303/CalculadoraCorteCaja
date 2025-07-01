@@ -39,6 +39,7 @@ class HistoryActivity : AppCompatActivity() {
                 set(Calendar.SECOND, 59)
             }
             val entries = db.deliveryDao().getEntriesInRange(first.timeInMillis, last.timeInMillis)
+            val deuda = db.deliveryDao().getDebtInRange(first.timeInMillis, last.timeInMillis)
             val df = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
             val historyText = entries.joinToString(separator = "\n") { e ->
                 val deuda = e.efectivo - e.retiros
@@ -46,6 +47,7 @@ class HistoryActivity : AppCompatActivity() {
             }
             withContext(Dispatchers.Main) {
                 binding.tvHistory.text = if (historyText.isNotEmpty()) historyText else getString(R.string.msg_no_data)
+                binding.tvDebt.text = getString(R.string.label_deuda_actual, deuda)
             }
         }
     }
