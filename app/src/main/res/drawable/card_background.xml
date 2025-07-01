@@ -8,5 +8,4 @@
         android:top="12dp"
         android:right="12dp"
         android:bottom="12dp"/>
-    <size android:width="match_parent"/>
 </shape>
