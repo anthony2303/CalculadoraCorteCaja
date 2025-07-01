@@ -1,8 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Título de la app -->
     <string name="app_name">CorteCaja</string>
-
-    <!-- Tus otros strings aquí -->
-    <!-- <string name="hello_world">¡Hola mundo!</string> -->
+    <string name="hello_world">¡Hola, mundo!</string>
 </resources>
