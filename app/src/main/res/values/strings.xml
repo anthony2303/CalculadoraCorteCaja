@@ -1,28 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Nombre y metadatos de la app -->
-    <string name="app_name">CorteCajaRepartidor</string>
-    <string name="launcher_name">CorteCaja</string>
+    <string name="app_name">RepartidorCaja</string>
+    <string name="launcher_name">RepartidorCaja</string>
 
-    <!-- Etiquetas de botones y campos -->
-    <string name="hint_monto">Ingresa el monto</string>
-    <string name="button_calcular">Calcular</string>
-    <string name="button_limpiar">Limpiar</string>
-    <string name="button_historial">Ver Historial</string>
+    <!-- Campos de entrada -->
+    <string name="hint_efectivo">Pagos en efectivo</string>
+    <string name="hint_tpv">Pagos con TPV</string>
+    <string name="hint_propinas">Propinas TPV</string>
+    <string name="hint_retiros">Retiros de efectivo</string>
+    <string name="hint_pedidos">Total de pedidos</string>
 
-    <!-- Títulos de pantallas -->
-    <string name="title_main">Calculadora de Corte</string>
-    <string name="title_history">Historial de Cortes</string>
+    <!-- Botones -->
+    <string name="button_guardar">Guardar registro</string>
+    <string name="button_compartir">Compartir WhatsApp</string>
+    <string name="button_historial">Ver historial</string>
 
-    <!-- Columnas del historial -->
-    <string name="column_fecha">Fecha</string>
-    <string name="column_monto">Monto</string>
-
-    <!-- Mensajes de estado -->
-    <string name="msg_no_data">No hay entradas aún</string>
-    <string name="msg_error">Ocurrió un error, inténtalo de nuevo</string>
+    <!-- Otros textos -->
+    <string name="label_deuda_actual">Deuda actual: $%1$.2f</string>
+    <string name="label_deuda_actual_default">Deuda actual: $0.00</string>
+    <string name="msg_guardado">Registro guardado</string>
+    <string name="msg_no_whatsapp">WhatsApp no está instalado</string>
+    <string name="msg_no_data">No hay registros este mes</string>
     <string name="msg_calculando">Calculando…</string>
-
-    <!-- Permisos y otros textos -->
-    <string name="permission_storage">Necesitamos acceso al almacenamiento para guardar el historial</string>
 </resources>
