@@ -7,22 +7,17 @@ import androidx.room.RoomDatabase
 
 @Database(entities = [CutEntry::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun cutDao(): CutDao
+  abstract fun cutDao(): CutDao
 
-    companion object {
-        @Volatile
-        private var INSTANCE: AppDatabase? = null
+  companion object {
+    @Volatile private var INSTANCE: AppDatabase? = null
 
-        fun getDatabase(context: Context): AppDatabase {
-            return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    AppDatabase::class.java,
-                    "cut_database"
-                ).build()
-                INSTANCE = instance
-                instance
-            }
-        }
-    }
+    fun getInstance(context: Context): AppDatabase =
+      INSTANCE ?: synchronized(this) {
+        INSTANCE ?: Room
+          .databaseBuilder(context, AppDatabase::class.java, "corte-db")
+          .build()
+          .also { INSTANCE = it }
+      }
+  }
 }
