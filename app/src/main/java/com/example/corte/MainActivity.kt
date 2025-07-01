@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.corte.databinding.ActivityMainBinding
 import com.example.corte.data.AppDatabase
-import com.example.corte.data.CutEntry
+import com.example.corte.data.DeliveryEntry
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
       val amount = binding.etAmount.text.toString().toDoubleOrNull() ?: return@setOnClickListener
       val now = System.currentTimeMillis()
       CoroutineScope(Dispatchers.IO).launch {
-        db.cutDao().insert(CutEntry(amount = amount, timestamp = now))
+        db.deliveryDao().insert(DeliveryEntry(amount = amount, timestamp = now))
       }
     }
 
